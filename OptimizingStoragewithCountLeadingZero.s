@@ -9,7 +9,7 @@ int_str: .string "int:"
 .text
 main:
 	# a1 for input number
-    lw a1, input
+ 	lw a1, input
 	# for-loop, a2 for loop counter
 	addi a2, x0, 4
 	# create space for char, short and int
@@ -19,23 +19,23 @@ main:
 	
 loop:
 	jal ra, opt_storage
-    jal ra, print
+	jal ra, print
 	slli a1, a1, 5 # shift input left to get larger data
 	addi a2, a2, -1 # loop counter
 	bne a2, x0, loop  
-    # Exit
-    li a7, 10
-    ecall
+	# Exit
+	li a7, 10
+	ecall
 
 opt_storage:
-    addi sp, sp, -4 # create stack space to save return address
-    sw ra, 0(sp)
+	addi sp, sp, -4 # create stack space to save return address
+	sw ra, 0(sp)
 	jal ra, count_leading_zeros # calculate leading zeros
 	# if leading zero >= 24
 	addi t0, s0, -24 
 	bge t0, x0, char
 	# if leading zero >= 16
-    addi t0, s0, -16
+	addi t0, s0, -16
 	bge t0, x0, short
 	# else
 	jal x0, int
@@ -50,7 +50,7 @@ int:
 	jal x0, endif
 endif:
 	lw ra, 0(sp)
-    addi sp, sp, 4
+	addi sp, sp, 4
 	ret
 
 count_leading_zeros:
@@ -94,44 +94,44 @@ print:
 	# li a7, 1
 	# ecall
 	
-    # print split symbol
-    la a0, split
-    li a7, 4
-    ecall
-    # print string "char"  
-    la a0, char_str
-    li a7, 4
-    ecall
-    # print char
+	# print split symbol
+	la a0, split
+	li a7, 4
+	ecall
+	# print string "char"  
+	la a0, char_str
+	li a7, 4
+	ecall
+	# print char
 	lb a0, 0(a3)
-    li a7, 1
-    ecall
-    # newline
-    la a0, newline
-    li a7, 4
-    ecall    
-    # print string "short"
-    la a0, short_str
-    li a7, 4
-    ecall
-    # print short
+	li a7, 1
+	ecall
+	# newline
+	la a0, newline
+	li a7, 4
+	ecall    
+	# print string "short"
+	la a0, short_str
+	li a7, 4
+	ecall
+	# print short
 	lh a0, 1(a3)
-    li a7, 1
-    ecall
-    # newline
-    la a0, newline
-    li a7, 4
-    ecall        
-    # print string "int"
-    la a0, int_str
-    li a7, 4
-    ecall
-    # print int
+	li a7, 1
+	ecall
+	# newline
+	la a0, newline
+	li a7, 4
+	ecall        
+	# print string "int"
+	la a0, int_str
+	li a7, 4
+	ecall
+	# print int
 	lw a0, 4(a3)
-    li a7, 1
-    ecall
-    # newline
-    la a0, newline
-    li a7, 4
-    ecall       
-    ret
+	li a7, 1
+	ecall
+	# newline
+	la a0, newline
+	li a7, 4
+	ecall       
+	ret
