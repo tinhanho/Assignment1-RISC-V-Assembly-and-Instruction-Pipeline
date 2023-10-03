@@ -37,10 +37,10 @@ void opt_storage(void *num_p){
 int main(){
 	int num = 16;
 	void *num_p;
-	for(int i=0; i<=3; i++){
+	for(int i=0; i<=2; i++){
 		num_p = &num;
 		opt_storage(num_p); // OUTPUT
-		num = num << 5;
+		num = num << 10;
 		printf("-------------\n");
 		printf("char: %d\n", num_p_8);
 		printf("short: %d\n", num_p_16);
