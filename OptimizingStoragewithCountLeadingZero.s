@@ -96,11 +96,6 @@ count_leading_zeros:
     ret
 	
 print:
-    # print leading zeros for testing
-    # add a0, s0, x0
-    # li a7, 1
-    # ecall
-
     # print split symbol
     la a0, split
     li a7, 4
