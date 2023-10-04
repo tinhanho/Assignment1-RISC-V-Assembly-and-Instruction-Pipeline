@@ -55,7 +55,7 @@ short:
 int:
     sw a1, 4(a3)
     jal x0, endif
-    endif:
+endif:
     lw ra, 0(sp)
     addi sp, sp, 4
     ret
