@@ -5,9 +5,9 @@
 	.attribute stack_align, 16
 	.text
 	.align	2
-	.globl	count_exponent
-	.type	count_exponent, @function
-count_exponent:
+	.globl	count_leading_zeros
+	.type	count_leading_zeros, @function
+count_leading_zeros:
 	srli t0, a0, 1 # t0 = x>>1
 	or a0, a0, t0 # x |= (x >> 1); 
 	srli t0, a0, 2 # x>>2
@@ -40,7 +40,7 @@ count_exponent:
 	sub a0, x0, a0
 	addi a0, a0, 32
 	ret
-	.size	count_exponent, .-count_exponent
+	.size	count_leading_zeros, .-count_leading_zeros
 	.section	.rodata.str1.4,"aMS",@progbits,1
 	.align	2
 .LC0:
@@ -103,7 +103,7 @@ main:
 	lw	s3,0(s2)
 	mv	a0,s3
 	li	a1,0
-	call	count_exponent
+	call	count_leading_zeros
 	mv	s0,a0
 	bgtu	a0,s4,.L3
 	mv	a1,s1
@@ -125,7 +125,7 @@ main:
 	lw s3,4(s2)
 	mv a0,s3
 	li a1,0
-	call count_exponent
+	call count_leading_zeros
 	mv s0,a0
 	bgtu	a0,s4,.L3
 	mv	a1,s1
@@ -147,7 +147,7 @@ main:
 	lw s3,8(s2)
 	mv a0,s3
 	li a1,0
-	call count_exponent
+	call count_leading_zeros
 	mv s0,a0
 	bgtu    a0,s4,.L3
 	mv      a1,s1

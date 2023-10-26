@@ -5,9 +5,9 @@
 	.attribute stack_align, 16
 	.text
 	.align	2
-	.globl	count_exponent
-	.type	count_exponent, @function
-count_exponent:
+	.globl	count_leading_zeros
+	.type	count_leading_zeros, @function
+count_leading_zeros:
 	slli	a4,a1,31
 	srli	a5,a0,1
 	or	a5,a4,a5
@@ -72,7 +72,7 @@ count_exponent:
 	slli	a0,a0,16
 	srli	a0,a0,16
 	ret
-	.size	count_exponent, .-count_exponent
+	.size	count_leading_zeros, .-count_leading_zeros
 	.section	.rodata.str1.4,"aMS",@progbits,1
 	.align	2
 .LC0:
@@ -145,7 +145,7 @@ main:
 	lw	s3,0(s2) # load test_data
 	mv	a0,s3
 	li	a1,0
-	call	count_exponent
+	call	count_leading_zeros
 	mv	s0,a0 # s0 is clz value
 	bgtu	a0,s4,.L3
 	mv	a1,s1
